@@ -1,11 +1,6 @@
 # Joyrest - Generated Documentation
 
-### GET  /feeds/{id}/entries
-**Produces:**
-
-* application/json
-* application/xml
-
+### DELETE  /feeds/{id}
 ### POST  /feeds
 **Consumes:**
 
@@ -99,5 +94,43 @@
 }
 ```
 
-### DELETE  /feeds/{id}
+### GET  /feeds/{id}/entries
+**Produces:**
+
+* application/json
+* application/xml
+
+**Response Class:**
+```json
+{
+  "type" : "object",
+  "id" : "urn:jsonschema:org:joyrest:examples:combiner:model:CombinedFeed",
+  "properties" : {
+    "urls" : {
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "refreshPeriod" : {
+      "type" : "integer"
+    },
+    "description" : {
+      "type" : "string"
+    },
+    "id" : {
+      "type" : "string"
+    },
+    "feedEntries" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "urn:jsonschema:org:joyrest:examples:combiner:model:FeedEntry"
+      }
+    },
+    "title" : {
+      "type" : "string"
+    }
+  }
+}
+```
 
