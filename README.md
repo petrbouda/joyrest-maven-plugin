@@ -1,1 +1,1 @@
-# joyrest-docgen-plugin
+# joyrest-maven-plugin
