@@ -18,6 +18,7 @@ import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.classworlds.realm.ClassRealm;
 import org.joyrest.context.ApplicationContext;
 import org.joyrest.context.Configurer;
+import org.joyrest.maven.docgen.transform.MarkdownTransformer;
 
 @Mojo(name = "gendoc", defaultPhase = LifecyclePhase.PACKAGE, requiresDependencyResolution = ResolutionScope.COMPILE_PLUS_RUNTIME)
 public class JoyrestGenDoc extends AbstractMojo {
@@ -59,6 +60,9 @@ public class JoyrestGenDoc extends AbstractMojo {
 
 		@SuppressWarnings("unchecked")
 		ApplicationContext context = configurer.initialize(applicationConfig);
+
+		MarkdownTransformer transformer = new MarkdownTransformer();
+		transformer.accept(context);
 	}
 
 	private void loadClassPath() {
