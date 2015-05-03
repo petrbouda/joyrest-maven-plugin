@@ -6,7 +6,6 @@
 * application/json
 * application/xml
 
-### DELETE  /feeds/{id}
 ### POST  /feeds
 **Consumes:**
 
@@ -16,4 +15,53 @@
 
 * application/json
 
+```json
+{
+  "type" : "object",
+  "id" : "urn:jsonschema:org:joyrest:examples:combiner:model:CombinedFeed",
+  "properties" : {
+    "urls" : {
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    },
+    "refreshPeriod" : {
+      "type" : "integer"
+    },
+    "description" : {
+      "type" : "string"
+    },
+    "id" : {
+      "type" : "string"
+    },
+    "feedEntries" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "id" : "urn:jsonschema:org:joyrest:examples:combiner:model:FeedEntry",
+        "properties" : {
+          "link" : {
+            "type" : "string"
+          },
+          "publishDate" : {
+            "type" : "integer",
+            "format" : "UTC_MILLISEC"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "title" : {
+      "type" : "string"
+    }
+  }
+}
+```
 
+### DELETE  /feeds/{id}
