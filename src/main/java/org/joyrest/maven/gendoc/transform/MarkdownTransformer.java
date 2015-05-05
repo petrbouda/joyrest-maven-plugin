@@ -1,4 +1,4 @@
-package org.joyrest.maven.docgen.transform;
+package org.joyrest.maven.gendoc.transform;
 
 import static java.util.Objects.nonNull;
 import static java.util.stream.Collectors.toList;
@@ -103,7 +103,7 @@ public class MarkdownTransformer implements Consumer<ApplicationContext> {
 			try {
 				Files.createDirectory(path);
 			} catch (IOException e) {
-				throw new RuntimeException("Error occurred during creating a folder for plugin 'docgen'", e);
+				throw new RuntimeException("Error occurred during creating a folder for plugin 'gendoc'", e);
 			}
 	}
 }

@@ -1,4 +1,4 @@
-package org.joyrest.maven.docgen;
+package org.joyrest.maven.gendoc;
 
 public enum View {
 	DEV,
