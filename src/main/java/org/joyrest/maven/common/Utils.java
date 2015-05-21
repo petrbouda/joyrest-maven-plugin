@@ -4,10 +4,20 @@ import org.apache.maven.plugin.descriptor.PluginDescriptor;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.classworlds.realm.ClassRealm;
 
-import java.io.File;
+import java.io.*;
+import java.nio.file.*;
 import java.util.List;
 
 public final class Utils {
+
+    public static void createFolder(Path path) {
+        if (!Files.exists(path))
+            try {
+                Files.createDirectory(path);
+            } catch (IOException e) {
+                throw new RuntimeException("Error occurred during creating a folder for plugin 'gendoc'", e);
+            }
+    }
 
     public static void loadClassPath(MavenProject project, PluginDescriptor descriptor) {
         try {

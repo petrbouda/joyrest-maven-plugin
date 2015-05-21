@@ -2,6 +2,7 @@ package org.joyrest.maven.gendoc.transform;
 
 import static java.util.Objects.nonNull;
 import static java.util.stream.Collectors.toList;
+import static org.joyrest.maven.common.Utils.createFolder;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -96,14 +97,5 @@ public class MarkdownTransformer implements Consumer<ApplicationContext> {
 			.filter(mediaType -> MediaType.WILDCARD != mediaType)
 			.map(MediaType::toString)
 			.collect(toList());
-	}
-
-	private static void createFolder(Path path) {
-		if (!Files.exists(path))
-			try {
-				Files.createDirectory(path);
-			} catch (IOException e) {
-				throw new RuntimeException("Error occurred during creating a folder for plugin 'gendoc'", e);
-			}
 	}
 }
