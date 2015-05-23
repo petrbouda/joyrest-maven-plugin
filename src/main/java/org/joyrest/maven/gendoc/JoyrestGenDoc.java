@@ -9,7 +9,10 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.project.MavenProject;
 import org.joyrest.context.*;
 import org.joyrest.maven.common.Utils;
+import org.joyrest.maven.gendoc.transform.FreeMarkerTransformer;
 import org.joyrest.maven.gendoc.transform.MarkdownTransformer;
+import org.joyrest.maven.gendoc.transform.Transformer;
+import org.joyrest.maven.gendoc.transform.TransformerType;
 
 @Mojo(name = "gendoc", defaultPhase = LifecyclePhase.PACKAGE, requiresDependencyResolution = ResolutionScope.COMPILE_PLUS_RUNTIME)
 public class JoyrestGenDoc extends AbstractMojo {
@@ -20,8 +23,8 @@ public class JoyrestGenDoc extends AbstractMojo {
 	@Parameter(defaultValue = "${plugin}", readonly = true)
 	private PluginDescriptor descriptor;
 
-	@Parameter
-	private String translator;
+	@Parameter(name = "transformer")
+	private TransformerType transformerType;
 
 	@Parameter
 	private String applicationConfigClass;
@@ -30,9 +33,6 @@ public class JoyrestGenDoc extends AbstractMojo {
 	@Parameter
 	private String configurerClass;
 	private Configurer configurer;
-
-	@Parameter
-	private Content content;
 
 	@Parameter
 	private GenerationStrategy generationStrategy;
@@ -52,8 +52,19 @@ public class JoyrestGenDoc extends AbstractMojo {
 		@SuppressWarnings("unchecked")
 		ApplicationContext context = configurer.initialize(applicationConfig);
 
-		MarkdownTransformer transformer = new MarkdownTransformer();
-		transformer.accept(context);
+		Transformer t = selectTransformer(transformerType);
+		t.accept(context);
+	}
+
+	private Transformer selectTransformer(TransformerType type) {
+		switch (type) {
+			case MARKDOWN:
+				return new MarkdownTransformer();
+			case FREEMARKER:
+				return new FreeMarkerTransformer();
+			default:
+				throw new RuntimeException("Unknown transformer type.");
+		}
 	}
 
 }

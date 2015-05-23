@@ -14,7 +14,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
 
-        <joyrest.version>0.1-SNAPSHOT</joyrest.version>
+        <joyrest.version>1.2-SNAPSHOT</joyrest.version>
 
         <slf4.version>1.7.12</slf4.version>
         <logback.version>1.1.2</logback.version>

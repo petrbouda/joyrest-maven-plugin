@@ -28,7 +28,7 @@ import io.github.robwin.markup.builder.MarkupLanguage;
 import org.joyrest.routing.entity.CollectionType;
 import org.joyrest.routing.entity.Type;
 
-public class MarkdownTransformer implements Consumer<ApplicationContext> {
+public class MarkdownTransformer implements Transformer {
 
 	private static Path DOCGEN_PATH = Paths.get("gendoc");
 
